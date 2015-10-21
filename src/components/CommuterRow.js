@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { CommuterCell } from '../components';
+
+const CommuterCell = ({ cell }) => (
+  <td>{ cell }</td>
+);
 
 export default class CommuterRow extends Component {
   constructor(props) {
     super(props);
     this.renderRow = this.renderRow.bind(this);
     this.renderHeader = this.renderHeader.bind(this);
+    this.renderCells = this.renderCells.bind(this);
   }
 
   render() {
@@ -15,26 +19,24 @@ export default class CommuterRow extends Component {
   }
 
   renderRow() {
-    const { row } = this.props;
-
     return (
       <tr>
-        { row.map((cell) => {
-          return <CommuterCell cell={ cell } />
-        }) }
+        { this.renderCells() }
       </tr>
     );
   }
 
   renderHeader() {
-    const { row } = this.props;
-
     return (
       <th>
-        { row.map((cell) => {
-          return <CommuterCell cell={ cell } />
-        }) }
+        { this.renderCells() }
       </th>
     );
+  }
+
+  renderCells() {
+    const { row } = this.props;
+
+    return row.map(cell => (<CommuterCell cell={ cell } /> ));
   }
 }

@@ -15,7 +15,7 @@ export default class App extends Component {
     return (
       <div>
         <Provider store={ store }>
-          { () => <CommuterApp /> }
+          <CommuterApp />
         </Provider>
 
         { renderDevTools(store) }

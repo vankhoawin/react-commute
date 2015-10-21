@@ -12,9 +12,10 @@ export default class CommuterTable extends Component {
     return (
       <table>
         <CommuterRow isHeader={ true } row={ headers } />
-        { rows.map((row) => {
-          return <CommuterRow isHeader={ false } row={ row } />
-        }) }
+
+        { rows.map(row => (
+          <CommuterRow isHeader={ false } row={ row } />
+        )) }
       </table>
     );
   }
