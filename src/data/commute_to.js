@@ -1,5 +1,10 @@
 export default {
 headers: ['Date','Lane','Taken','Start','Time','5','710','10','Fair Oaks','Park'],
+stats: {
+    lanes: {},
+    startTimes: 0,
+    commuteTimes: []
+},
 rows: [ [ '7/7/2015',
     '1',
     '8:03:00',
