@@ -37,7 +37,6 @@ export default class CommuteDataInput extends Component {
     let [ headersRaw, ...rowsRaw ] = commuteData.split('\n');
     let headers = headersRaw.split(',');
     let rows = rowsRaw.map(row => (row.split(',')));
-
     let stats = this.calculateStatistics(rows);
 
     dispatch(importData({

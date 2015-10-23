@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatisticsLanes } from '../components';
+import { StatisticsPie } from '../components';
 
 export default class CommuteStatistics extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class CommuteStatistics extends Component {
 
     return (
       <div>
-        <StatisticsLanes lanes={ lanes } />
+        <StatisticsPie lanes={ lanes } />
       </div>
     );
   }
