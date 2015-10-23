@@ -1,1 +1,1 @@
-export { IMPORT_DATA } from './ImportActions';
+export { importData } from './ImportActions';

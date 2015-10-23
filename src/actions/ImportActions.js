@@ -1,7 +1,8 @@
 import * as types from '../constants/ImportTypes';
 
-export function importData() {
+export function importData(commuteData) {
   return {
-    type: types.IMPORT_DATA
+    type: types.IMPORT_DATA,
+    commuteData
   };
 }

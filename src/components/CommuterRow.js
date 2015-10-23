@@ -7,36 +7,29 @@ const CommuterCell = ({ cell }) => (
 export default class CommuterRow extends Component {
   constructor(props) {
     super(props);
-    this.renderRow = this.renderRow.bind(this);
+    this.renderBody = this.renderBody.bind(this);
     this.renderHeader = this.renderHeader.bind(this);
-    this.renderCells = this.renderCells.bind(this);
+  }
+
+  renderBody(row) {
+    return row.map((cell, index) => (
+      <td key={ index }>{ cell }</td>
+    ));
+  }
+
+  renderHeader(row) {
+    return row.map((cell, index) => (
+      <th key={ index }>{ cell }</th>
+    ));
   }
 
   render() {
-    const { isHeader } = this.props;
+    const { row, isHeader } = this.props;
 
-    return isHeader ? this.renderHeader() : this.renderRow();
-  }
-
-  renderRow() {
     return (
       <tr>
-        { this.renderCells() }
+        { isHeader ? this.renderHeader(row) : this.renderBody(row) }
       </tr>
     );
-  }
-
-  renderHeader() {
-    return (
-      <th>
-        { this.renderCells() }
-      </th>
-    );
-  }
-
-  renderCells() {
-    const { row } = this.props;
-
-    return row.map(cell => (<CommuterCell cell={ cell } /> ));
   }
 }

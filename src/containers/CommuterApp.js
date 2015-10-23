@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { CommuterTable, Header } from '../components';
+import { CommuterTable, CommuteDataInput, Header } from '../components';
 
 @connect(state => ({ commuteData: state.commuteData }))
 export default class CommuterApp extends Component {
@@ -11,6 +11,7 @@ export default class CommuterApp extends Component {
     return (
       <div>
         <Header />
+        <CommuteDataInput commuteData={ commuteData } />
         <CommuterTable commuteData={ commuteData } />
       </div>
     );
