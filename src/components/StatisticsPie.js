@@ -5,7 +5,6 @@ export default class StatisticsPie extends Component {
   constructor(props) {
     super(props);
     this.processLaneData = this.processLaneData.bind(this);
-    this.renderLanes = this.renderLanes.bind(this);
   }
 
   processLaneData(lanes) {
@@ -23,7 +22,7 @@ export default class StatisticsPie extends Component {
 
     // stringify to whole percentages
     lanesArr.map(lane => {
-      lane.value = Math.round(lane.value / totalTaken * 100);
+      lane.value = Math.round((lane.value / totalTaken) * 100);
     });
 
     return lanesArr;
