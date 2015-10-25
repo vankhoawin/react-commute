@@ -16,6 +16,7 @@ export default class CommuteImport extends Component {
 
     return (
       <div>
+        { JSON.stringify(stats) }
         <CommuteDataInput commuteData={ commuteData } />
         <CommuterTable commuteData={ commuteData } />
       </div>

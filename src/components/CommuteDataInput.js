@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { importData } from '../actions';
+import { toSeconds, toHHMMSS } from '../utils/convertTime';
 
 @connect(state => ({ commuteData: state.commuteData }))
 export default class CommuteDataInput extends Component {
@@ -11,23 +13,77 @@ export default class CommuteDataInput extends Component {
   }
 
   calculateStatistics(rows) {
-    let lanes = {};
-    let startTimes = 0;
-    let commuteTimes = [];
+    let rowLength = rows.length
+      ? Math.max(rows[0].length - 2, 0)
+      : 0;
 
-    rows.map(row => {
-      let [ , lane, startTime, ...commuteTime ] = row;
-      let [ hours, minutes, seconds ] = startTime.split(':')
+    // holds which lane was taken to commute
+    let lanes = {};
+
+    // holds average of times for each column
+    let averageTimes = new Array(rowLength).fill(0);
+
+    // holds total time for each row
+    let rowTimes = [];
+
+    // holds longest commute time
+    let longestCommute = { 
+      index: -1,
+      value: 0
+    };
+
+    // holds shortest commute time
+    let shortestCommute = {
+      index: -1,
+      value: Number.MAX_SAFE_INTEGER
+    };
+
+    let rowTime;
+    let lapTime;
+    let lane;
+    let averageTime;
+
+    rows.map((row, index) => {
+      [ , lane, ...averageTime ] = row;
+      rowTime = 0;
+
+      for (let i = 0; i < rowLength; ++i) {
+        lapTime = toSeconds(averageTime[i]);
+
+        averageTimes[i] += lapTime;
+
+        if (i > 1) {
+          rowTime += lapTime;
+        }
+      }
 
       lanes[lane] ? ++lanes[lane] : lanes[lane] = 1;
-      startTimes += hours*2400 + minutes*60 + seconds;
-      commuteTimes.push(commuteTime);
+      rowTimes.push(rowTime);
+
+      if (rowTime > longestCommute.value) {
+        longestCommute.index = index;
+        longestCommute.value = rowTime;
+      }
+
+      if (rowTime < shortestCommute.value) {
+        shortestCommute.index = index;
+        shortestCommute.value = rowTime;
+      }
     });
+
+    longestCommute.value = toHHMMSS(longestCommute.value);
+    shortestCommute.value = toHHMMSS(shortestCommute.value);
+    rowTimes = rowTimes.map(toHHMMSS);
+    averageTimes = averageTimes.map(averageTime => (
+      toHHMMSS(averageTime / rows.length)
+    ));
 
     return {
       lanes,
-      startTimes: startTimes / startTimes.length / 2400,
-      commuteTimes
+      rowTimes,
+      averageTimes,
+      longestCommute,
+      shortestCommute
     }
   }
 

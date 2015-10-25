@@ -29,7 +29,7 @@ export default class CommuterApp extends Component {
     return (
       <Router>
         <Route component={ CommuterLinks }>
-          <Route path="/" component={ CommuteImport }/>
+          <Route path="/" component={ CommuteImport } />
           <Route path="/statistics" component={ CommuteStatistics } />
         </Route>
       </Router>

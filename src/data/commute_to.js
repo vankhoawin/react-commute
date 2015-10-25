@@ -1,9 +1,9 @@
 export default {
 headers: ['Date','Lane','Taken','Start','Time','5','710','10','Fair Oaks','Park'],
 stats: {
-    lanes: {},
-    startTimes: 0,
-    commuteTimes: []
+    lanes: {0: 6, 1: 18, 2: 12},
+    startTimes: 3.191699924901217e+245,
+    commuteTimes: [["0:04:40", "0:40:16", "0:03:30", "0:11:21", "0:15:00"]]
 },
 rows: [ [ '7/7/2015',
     '1',
