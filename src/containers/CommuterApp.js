@@ -1,22 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { CommuterTable, CommuteDataInput, CommuteStatistics, Header } from '../components';
+import { Router, Route, Link } from 'react-router';
 
-@connect(state => ({ commuteData: state.commuteData }))
-export default class CommuterApp extends Component {
+import CommuteImport from './CommuteImport';
+import CommuteStatistics from './CommuteStatistics';
+
+
+class CommuterLinks extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
-    const { commuteData } = this.props;
-    const { stats } = commuteData;
-
     return (
       <div>
-        <Header />
-        <CommuteDataInput commuteData={ commuteData } />
-        <CommuteStatistics stats={ stats } />
-        <CommuterTable commuteData={ commuteData } />
+        <ul>
+          <li><Link to="/">Import</Link></li>
+          <li><Link to="/statistics">Statistics</Link></li>
+        </ul>
+        { this.props.children }
       </div>
     );
   }
+}
 
+export default class CommuterApp extends Component {
+  render() {
+    return (
+      <Router>
+        <Route component={ CommuterLinks }>
+          <Route path="/" component={ CommuteImport }/>
+          <Route path="/statistics" component={ CommuteStatistics } />
+        </Route>
+      </Router>
+    );
+  }
 }
