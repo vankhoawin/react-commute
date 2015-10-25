@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { StatisticsPie } from '../components';
+import { LanePieChart, AverageCommuteLineChart } from '../components';
 
 
 @connect(state => ({ commuteData: state.commuteData }))
@@ -12,11 +12,12 @@ export default class CommuteStatistics extends Component {
 
   render() {
     const { stats } = this.props.commuteData;
-    const { lanes } = stats;
+    const { lanes, rowTimes } = stats;
 
     return (
       <div>
-        <StatisticsPie lanes={ lanes } />
+        <LanePieChart lanes={ lanes } />
+        <AverageCommuteLineChart rowTimes={ rowTimes } />
       </div>
     );
   }

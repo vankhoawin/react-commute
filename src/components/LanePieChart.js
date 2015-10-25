@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PieChart } from 'react-d3';
 
-export default class StatisticsPie extends Component {
+export default class LanePieChart extends Component {
   constructor(props) {
     super(props);
     this.processLaneData = this.processLaneData.bind(this);

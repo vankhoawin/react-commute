@@ -40,11 +40,15 @@ export default class CommuteDataInput extends Component {
 
     let rowTime;
     let lapTime;
+    let date;
     let lane;
     let averageTime;
+    let year, month, day;
 
     rows.map((row, index) => {
-      [ , lane, ...averageTime ] = row;
+      [date, lane, ...averageTime ] = row;
+      [month, day, year] = date.split('/');
+
       rowTime = 0;
 
       for (let i = 0; i < rowLength; ++i) {
@@ -58,7 +62,10 @@ export default class CommuteDataInput extends Component {
       }
 
       lanes[lane] ? ++lanes[lane] : lanes[lane] = 1;
-      rowTimes.push(rowTime);
+      rowTimes.push({
+        x: new Date(year, month, day),
+        y: rowTime / 3600
+      });
 
       if (rowTime > longestCommute.value) {
         longestCommute.index = index;
@@ -73,7 +80,6 @@ export default class CommuteDataInput extends Component {
 
     longestCommute.value = toHHMMSS(longestCommute.value);
     shortestCommute.value = toHHMMSS(shortestCommute.value);
-    rowTimes = rowTimes.map(toHHMMSS);
     averageTimes = averageTimes.map(averageTime => (
       toHHMMSS(averageTime / rows.length)
     ));
