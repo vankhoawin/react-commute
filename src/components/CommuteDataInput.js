@@ -13,7 +13,7 @@ export default class CommuteDataInput extends Component {
   }
 
   calculateStatistics(rows) {
-    let rowLength = rows.length
+    const rowLength = rows.length
       ? Math.max(rows[0].length - 2, 0)
       : 0;
 
