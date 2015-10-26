@@ -1,6 +1,9 @@
 import data from '../data/commute_to';
 
-const initialState = data;
+let initialState = JSON.parse(data);
+initialState.stats.rowTimes.map((rowTime) => {
+  rowTime.x = new Date(rowTime.x);
+});
 
 export default function commuteData(state = initialState, action) {
   switch(action.type) {

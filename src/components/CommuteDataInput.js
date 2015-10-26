@@ -17,6 +17,9 @@ export default class CommuteDataInput extends Component {
       ? Math.max(rows[0].length - 2, 0)
       : 0;
 
+    // holds all row data
+    let totalRows = [];
+
     // holds which lane was taken to commute
     let lanes = {};
 
@@ -66,6 +69,7 @@ export default class CommuteDataInput extends Component {
         x: new Date(year, month, day),
         y: rowTime / 3600
       });
+      totalRows.push(row);
 
       if (rowTime > longestCommute.value) {
         longestCommute.index = index;
@@ -85,6 +89,7 @@ export default class CommuteDataInput extends Component {
     ));
 
     return {
+      totalRows,
       lanes,
       rowTimes,
       averageTimes,
