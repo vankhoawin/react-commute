@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { CommuterTable, CommuteDataInput } from '../components';
+import { CommuteDataInput } from '../components';
 
 
 @connect(state => ({ commuteData: state.commuteData }))
@@ -17,7 +17,6 @@ export default class CommuteImport extends Component {
     return (
       <div>
         <CommuteDataInput commuteData={ commuteData } />
-        <CommuterTable commuteData={ commuteData } />
         { JSON.stringify(commuteData) }
       </div>
     );
