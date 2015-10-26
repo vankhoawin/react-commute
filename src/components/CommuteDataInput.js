@@ -111,6 +111,8 @@ export default class CommuteDataInput extends Component {
       rows,
       stats
     }));
+
+    window.location.assign('/#/statistics');
   }
 
   render() {

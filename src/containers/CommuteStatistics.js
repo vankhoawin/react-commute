@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 import {
   LanePieChart,
@@ -20,15 +21,17 @@ export default class CommuteStatistics extends Component {
     const { lanes, rowTimes } = stats;
 
     return (
-      <div>
-        <div>
-          <CommuterTable commuteData={ commuteData } />
-        </div>
-        <div>
-          <LanePieChart lanes={ lanes } />
-          <AverageCommuteLineChart rowTimes={ rowTimes } />
-        </div>
-      </div>
+      <Grid>
+        <Row>
+          <Col md={6}>
+            <CommuterTable commuteData={ commuteData } />
+          </Col>
+          <Col md={6}>
+            <LanePieChart lanes={ lanes } />
+            <AverageCommuteLineChart rowTimes={ rowTimes } />
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

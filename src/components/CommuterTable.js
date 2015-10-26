@@ -10,7 +10,7 @@ export default class CommuterTable extends Component {
     const { rows, headers } = this.props.commuteData;
 
     return (
-      <table>
+      <table className="table">
         <thead>
           <CommuterRow isHeader={ true } row={ headers } />
         </thead>
