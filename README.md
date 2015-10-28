@@ -1,4 +1,4 @@
 react-commute
 =====================
 
-Built on Dan Abramov's [https://github.com/gaearon/react-hot-boilerplate](React Transform Boilerplate)
+Built on Dan Abramov's [React Transform Boilerplate](https://github.com/gaearon/react-hot-boilerplate)
