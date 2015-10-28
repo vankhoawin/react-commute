@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button, Input } from 'react-bootstrap';
 
 import { importData } from '../actions';
 import { toSeconds, toHHMMSS } from '../utils/convertTime';
@@ -118,8 +119,8 @@ export default class CommuteDataInput extends Component {
   render() {
     return (
       <div>
-        <textarea id="commute-data-text" />
-        <button onClick={ this.handleCommuteInput }>Import Data</button>
+        <Input id="commute-data-text" type="textarea" rows="30" placeholder="Paste CSV here" />
+        <Button onClick={ this.handleCommuteInput } bsStyle="primary">Import CSV Data</Button>
       </div>
     );
   }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
+import { Grid } from 'react-bootstrap';
 
 import { createStore, renderDevTools } from '../utils/devTools';
 
-import CommuterApp from './CommuterApp';
+import CommuterRouter from './CommuterRouter';
 import * as reducers from '../reducers';
 
 const reducer = combineReducers(reducers);
@@ -13,13 +14,13 @@ const store = createStore(reducer);
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <Grid>
         <Provider store={ store }>
-          <CommuterApp />
+          <CommuterRouter />
         </Provider>
 
         { renderDevTools(store) }
-      </div>
+      </Grid>
     );
   }
 }
