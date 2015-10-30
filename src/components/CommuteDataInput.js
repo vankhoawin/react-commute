@@ -11,15 +11,26 @@ export default class CommuteDataInput extends Component {
     super(props);
     this.calculateStatistics = this.calculateStatistics.bind(this);
     this.handleCommuteInput = this.handleCommuteInput.bind(this);
+    this.processCSV = this.processCSV.bind(this);
   }
 
-  calculateStatistics(rows) {
-    const rowLength = rows.length
-      ? Math.max(rows[0].length - 2, 0)
+  processCSV(commuteData) {
+    let [ headersRaw, ...rowsRaw ] = commuteData.split('\n');
+    let headers = headersRaw.split(',');
+    rowsRaw = rowsRaw.map(row => (row.split(',')));
+
+    return { headers, rowsRaw };
+  }
+
+  calculateStatistics(commuteData) {
+    let { headers, rowsRaw } = this.processCSV(commuteData);
+
+    const rowLength = rowsRaw.length
+      ? Math.max(rowsRaw[0].length - 2, 0)
       : 0;
 
     // holds all row data
-    let totalRows = [];
+    let rows = [];
 
     // holds which lane was taken to commute
     let lanes = {};
@@ -33,8 +44,10 @@ export default class CommuteDataInput extends Component {
       colTimes.push([]);
     }
 
-    // holds total time for each row
     let rowTimes = [];
+
+    // holds total time for each row (in hours)
+    let rowTimesLineData = [];
 
     // holds longest commute time
     let longestCommute = { 
@@ -56,7 +69,7 @@ export default class CommuteDataInput extends Component {
     let year, month, day;
     let rowDate;
 
-    rows.map((row, index) => {
+    rowsRaw.map((row, index) => {
       [ date, lane, ...averageTime ] = row;
       [ month, day, year ] = date.split('/');
       rowDate = new Date(year, month, day);
@@ -81,11 +94,12 @@ export default class CommuteDataInput extends Component {
       }
 
       lanes[lane] ? ++lanes[lane] : lanes[lane] = 1;
-      rowTimes.push({
+      rowTimes.push(toHHMMSS(rowTime));
+      rowTimesLineData.push({
         x: rowDate,
         y: rowTime / 3600
       });
-      totalRows.push(row);
+      rows.push(row);
 
       if (rowTime > longestCommute.value) {
         longestCommute.index = index;
@@ -100,14 +114,23 @@ export default class CommuteDataInput extends Component {
 
     longestCommute.value = toHHMMSS(longestCommute.value);
     shortestCommute.value = toHHMMSS(shortestCommute.value);
+
     averageTimes = averageTimes.map(averageTime => (
-      toHHMMSS(averageTime / rows.length)
+      toHHMMSS(averageTime / rowsRaw.length)
     ));
 
+    rowTimes.forEach((row, index) => {
+      rows[index].push(row);
+    });
+
+    headers.push('Total');
+
     return {
-      totalRows,
+      rows,
+      headers,
       lanes,
       rowTimes,
+      rowTimesLineData,
       colTimes,
       averageTimes,
       longestCommute,
@@ -118,16 +141,9 @@ export default class CommuteDataInput extends Component {
   handleCommuteInput(e) {
     const { dispatch } = this.props;
     let commuteData = document.getElementById('commute-data-text').value;
-    let [ headersRaw, ...rowsRaw ] = commuteData.split('\n');
-    let headers = headersRaw.split(',');
-    let rows = rowsRaw.map(row => (row.split(',')));
-    let stats = this.calculateStatistics(rows);
+    let stats = this.calculateStatistics(commuteData);
 
-    dispatch(importData({
-      headers,
-      rows,
-      stats
-    }));
+    dispatch(importData(stats));
 
     window.location.assign('/#/statistics');
   }

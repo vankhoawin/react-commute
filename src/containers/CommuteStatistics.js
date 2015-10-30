@@ -16,26 +16,29 @@ export default class CommuteStatistics extends Component {
   }
 
   render() {
-    const { commuteData } = this.props;
-    const { stats } = commuteData;
-    const { lanes, rowTimes } = stats;
-    const firstCol = stats.colTimes[0];
+    const {
+      rows,
+      headers,
+      lanes,
+      rowTimesLineData,
+      colTimes
+    } = this.props.commuteData;
 
     return (
       <Row>
         <Col md={6}>
-          <CommuterTable commuteData={ commuteData } />
+          <CommuterTable commuteData={ { rows, headers } } />
         </Col>
         <Col md={6}>
           <LanePieChart lanes={ lanes } />
           <CommuteLineChart 
-            rowTimes={ rowTimes }
+            rowTimes={ rowTimesLineData }
             title="Average Commute Times"
             xAxisLabel="Day"
             yAxisLabel="Total Time (hours)"
           />
           <CommuteLineChart 
-            rowTimes={ firstCol }
+            rowTimes={ colTimes[0] }
             title="5 Commute Time"
             xAxisLabel="Day"
             yAxisLabel="Total Time (minutes)"
