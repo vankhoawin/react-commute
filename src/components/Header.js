@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
+import CSSModules from 'react-css-modules';
+import styles from './Header.scss';
 
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +14,7 @@ export default class Header extends Component {
     return (
       <Row>
         <Col xs={12} lg={12}>
-          <nav>
+          <nav style={ styles }>
             <ul>
               <li><Link to="/statistics">Statistics</Link></li>
               <li><a href="#">&lt;-</a></li>
@@ -30,3 +32,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default CSSModules(Header, styles);
