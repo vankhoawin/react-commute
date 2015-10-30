@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+import { Row, Col } from 'react-bootstrap';
+
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (
-      <ul>
-        <li><button>Home</button></li>
-        <li><button>Save</button></li>
-        <li><button>Import</button></li>
-      </ul>
+      <Row>
+        <Col xs={12} lg={12}>
+          <nav>
+            <ul>
+              <li><Link to="/statistics">Statistics</Link></li>
+              <li><a href="#">&lt;-</a></li>
+              <li><a href="#">-&gt;</a></li>
+              <li><Link to="/">Import</Link></li>
+              <li><a href="#">Export</a></li>
+              <li><a href="#">Reset</a></li>
+            </ul>
+          </nav>
+        </Col>
+        <Col xs={12} lg={12}>
+          { this.props.children }
+        </Col>
+      </Row>
     );
   }
 }
