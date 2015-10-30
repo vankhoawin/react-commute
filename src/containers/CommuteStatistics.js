@@ -28,8 +28,18 @@ export default class CommuteStatistics extends Component {
         </Col>
         <Col md={6}>
           <LanePieChart lanes={ lanes } />
-          <CommuteLineChart rowTimes={ rowTimes } />
-          <CommuteLineChart rowTimes={ firstCol } />
+          <CommuteLineChart 
+            rowTimes={ rowTimes }
+            title="Average Commute Times"
+            xAxisLabel="Day"
+            yAxisLabel="Total Time (hours)"
+          />
+          <CommuteLineChart 
+            rowTimes={ firstCol }
+            title="5 Commute Time"
+            xAxisLabel="Day"
+            yAxisLabel="Total Time (minutes)"
+          />
         </Col>
       </Row>
     );

@@ -17,7 +17,7 @@ export default class CommuteLineChart extends Component {
   }
 
   render() {
-    const { rowTimes } = this.props;
+    const { rowTimes, title, xAxisLabel, yAxisLabel } = this.props;
     const lineData = this.processLineData(rowTimes);
     const boxObjectSize = {
       x: 0,
@@ -32,9 +32,9 @@ export default class CommuteLineChart extends Component {
         width={ 500 }
         height={ 400 }
         viewBoxObject={ boxObjectSize }
-        title="Average Commute Line Chart"
-        yAxisLabel="Total Time (hours)"
-        xAxisLabel="Day"
+        title={ title }
+        yAxisLabel={ yAxisLabel }
+        xAxisLabel={ xAxisLabel }
         gridHorizontal={ true }
       />
     );
