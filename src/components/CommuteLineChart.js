@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { LineChart } from 'react-d3';
 
-export default class AverageCommuteLineChart extends Component {
+export default class CommuteLineChart extends Component {
   constructor(props) {
     super(props);
     this.processLineData = this.processLineData.bind(this);

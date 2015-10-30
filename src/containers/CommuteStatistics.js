@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 
 import {
   LanePieChart,
-  AverageCommuteLineChart,
+  CommuteLineChart,
   CommuterTable
 } from '../components';
 
@@ -19,6 +19,7 @@ export default class CommuteStatistics extends Component {
     const { commuteData } = this.props;
     const { stats } = commuteData;
     const { lanes, rowTimes } = stats;
+    const firstCol = stats.colTimes[0];
 
     return (
       <Row>
@@ -27,7 +28,8 @@ export default class CommuteStatistics extends Component {
         </Col>
         <Col md={6}>
           <LanePieChart lanes={ lanes } />
-          <AverageCommuteLineChart rowTimes={ rowTimes } />
+          <CommuteLineChart rowTimes={ rowTimes } />
+          <CommuteLineChart rowTimes={ firstCol } />
         </Col>
       </Row>
     );

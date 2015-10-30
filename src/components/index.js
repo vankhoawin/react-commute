@@ -3,4 +3,4 @@ export CommuterRow from './CommuterRow';
 export Header from './Header';
 export CommuteDataInput from './CommuteDataInput';
 export LanePieChart from './LanePieChart';
-export AverageCommuteLineChart from './AverageCommuteLineChart';
+export CommuteLineChart from './CommuteLineChart';

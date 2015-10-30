@@ -27,9 +27,9 @@ export default class CommuteDataInput extends Component {
     // holds average of times for each column
     let averageTimes = new Array(rowLength).fill(0);
 
-    // holds all times for each column
+    // holds all times for each time column
     let colTimes = [];
-    for (var i = 0; i < rowLength; ++i) {
+    for (var i = 0; i < rowLength - 1; ++i) {
       colTimes.push([]);
     }
 
@@ -54,19 +54,26 @@ export default class CommuteDataInput extends Component {
     let lane;
     let averageTime;
     let year, month, day;
+    let rowDate;
 
     rows.map((row, index) => {
       [ date, lane, ...averageTime ] = row;
       [ month, day, year ] = date.split('/');
+      rowDate = new Date(year, month, day);
 
       rowTime = 0;
 
       for (let i = 0; i < rowLength; ++i) {
         lapTime = toSeconds(averageTime[i]);
 
-        colTimes[i].push(lapTime);
-
         averageTimes[i] += lapTime;
+
+        if (i > 0) {
+          colTimes[i-1].push({
+            x: rowDate,
+            y: lapTime / 60
+          });
+        }
 
         if (i > 1) {
           rowTime += lapTime;
@@ -75,7 +82,7 @@ export default class CommuteDataInput extends Component {
 
       lanes[lane] ? ++lanes[lane] : lanes[lane] = 1;
       rowTimes.push({
-        x: new Date(year, month, day),
+        x: rowDate,
         y: rowTime / 3600
       });
       totalRows.push(row);
