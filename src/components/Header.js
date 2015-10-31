@@ -5,7 +5,8 @@ import CSSModules from 'react-css-modules';
 import styles from './Header.scss';
 
 
-class Header extends Component {
+@CSSModules(styles)
+export default class Header extends Component {
   constructor(props) {
     super(props);
   }
@@ -13,24 +14,22 @@ class Header extends Component {
   render() {
     return (
       <Row>
-        <Col xs={12} lg={12}>
-          <nav style={ styles }>
+        <Col xs={12}>
+          <nav styleName='links'>
             <ul>
               <li><Link to="/statistics">Statistics</Link></li>
               <li><a href="#">&lt;-</a></li>
               <li><a href="#">-&gt;</a></li>
               <li><Link to="/">Import</Link></li>
-              <li><a href="#">Export</a></li>
+              <li><Link to="/export">Export</Link></li>
               <li><a href="#">Reset</a></li>
             </ul>
           </nav>
         </Col>
-        <Col xs={12} lg={12}>
+        <Col xs={12}>
           { this.props.children }
         </Col>
       </Row>
     );
   }
 }
-
-export default CSSModules(Header, styles);

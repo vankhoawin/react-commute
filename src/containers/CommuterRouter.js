@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 
 import CommuteImport from './CommuteImport';
 import CommuteStatistics from './CommuteStatistics';
+import CommuteExport from './CommuteExport';
 import { Header } from '../components';
 
 
@@ -15,6 +16,7 @@ export default class CommuterRouter extends Component {
         <Route component={ Header }>
           <Route path="/" component={ CommuteImport } />
           <Route path="/statistics" component={ CommuteStatistics } />
+          <Route path="/export" component={ CommuteExport } />
         </Route>
       </Router>
     );
