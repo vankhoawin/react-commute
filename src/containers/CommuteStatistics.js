@@ -19,6 +19,7 @@ export default class CommuteStatistics extends Component {
     const {
       rows,
       headers,
+      rowTimes,
       lanes,
       rowTimesLineData,
       colTimes
@@ -27,7 +28,7 @@ export default class CommuteStatistics extends Component {
     return (
       <Row>
         <Col md={6}>
-          <CommuterTable commuteData={ { rows, headers } } />
+          <CommuterTable commuteData={ { rows, headers, rowTimes } } />
         </Col>
         <Col md={6}>
           <LanePieChart lanes={ lanes } />

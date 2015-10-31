@@ -7,16 +7,20 @@ export default class CommuterTable extends Component {
   }
 
   render() {
-    const { rows, headers } = this.props.commuteData;
+    const { rows, headers, rowTimes } = this.props.commuteData;
+    const combinedRows = rows.map((row, index) => (
+      [...row, rowTimes[index]]
+    ));
+    const combinedHeaders = [...headers, 'Total'];
 
     return (
       <table className="table">
         <thead>
-          <CommuterRow isHeader={ true } row={ headers } />
+          <CommuterRow isHeader={ true } row={ combinedHeaders } />
         </thead>
 
         <tbody>
-          { rows.map((row, index) => (
+          { combinedRows.map((row, index) => (
             <CommuterRow isHeader={ false } key={ index } row={ row } />
           )) }
         </tbody>

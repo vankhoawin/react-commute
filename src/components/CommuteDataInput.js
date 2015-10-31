@@ -38,6 +38,8 @@ export default class CommuteDataInput extends Component {
     // holds average of times for each column
     let averageTimes = new Array(rowLength).fill(0);
 
+    let rowTimes = [];
+
     // holds all times for each time column
     let colTimes = [];
     for (var i = 0; i < rowLength - 1; ++i) {
@@ -96,7 +98,9 @@ export default class CommuteDataInput extends Component {
         x: rowDate,
         y: rowTime / 3600
       });
-      rows.push([...row, toHHMMSS(rowTime)]);
+      rows.push(row);
+
+      rowTimes.push(toHHMMSS(rowTime));
 
       if (rowTime > longestCommute.value) {
         longestCommute.index = index;
@@ -116,12 +120,11 @@ export default class CommuteDataInput extends Component {
       toHHMMSS(averageTime / rowsRaw.length)
     ));
 
-    headers.push('Total');
-
     return {
       rows,
       headers,
       lanes,
+      rowTimes,
       rowTimesLineData,
       colTimes,
       averageTimes,
