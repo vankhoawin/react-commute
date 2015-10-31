@@ -32,9 +32,11 @@ export default class ExportTabs extends Component {
   }
 
   render() {
-    const { headers, rows } = this.props.commuteData;
+    const { commuteData } = this.props;
+    const { headers, rows } = commuteData;
     const dataCSV = this.translateToCSV(headers, rows);
-    const dataJSON = JSON.stringify([headers, ...rows]);
+    const dataJSON = JSON.stringify([headers, ...rows], null, 2);
+    const processedJSON = JSON.stringify(commuteData, null, 2);
 
     return (
       <Tabs
@@ -47,6 +49,9 @@ export default class ExportTabs extends Component {
         </Tab>
         <Tab eventKey={2} title="JSON">
           <pre>{ dataJSON }</pre>
+        </Tab>
+        <Tab eventKey={3} title="Processed Data">
+          <pre>{ processedJSON }</pre>
         </Tab>
       </Tabs>
     );
