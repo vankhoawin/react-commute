@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
-import styles from './Header.scss';
+
+import styles from '../styles/Header.scss';
 
 
 @CSSModules(styles)
