@@ -16,7 +16,7 @@ export default class Header extends Component {
     return (
       <Row>
         <Col xs={12}>
-          <nav styleName='links'>
+          <nav styleName="links">
             <ul>
               <li><Link to="/statistics">Statistics</Link></li>
               <li><a href="#">&lt;-</a></li>

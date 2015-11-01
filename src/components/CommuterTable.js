@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { CommuterRow } from '../components';
+import CSSModules from 'react-css-modules';
 
+import styles from '../styles/CommuterTable.scss';
+
+
+@CSSModules(styles)
 export default class CommuterTable extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +24,7 @@ export default class CommuterTable extends Component {
           <CommuterRow isHeader={ true } row={ combinedHeaders } />
         </thead>
 
-        <tbody>
+        <tbody styleName="commuter-body">
           { combinedRows.map((row, index) => (
             <CommuterRow isHeader={ false } key={ index } row={ row } />
           )) }
