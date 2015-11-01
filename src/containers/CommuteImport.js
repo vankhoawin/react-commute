@@ -17,11 +17,8 @@ export default class CommuteImport extends Component {
 
     return (
       <Row>
-        <Col md={6}>
+        <Col xs={12}>
           <CommuteDataInput commuteData={ commuteData } />
-        </Col>
-        <Col md={6}>
-          { JSON.stringify(commuteData) }
         </Col>
       </Row>
     );

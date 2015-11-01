@@ -44,13 +44,13 @@ export default class ExportTabs extends Component {
         defaultActiveKey={ 1 }
         animation={ false }>
 
-        <Tab eventKey={1} title="CSV">
+        <Tab eventKey={ 1 } title="CSV">
           <pre>{ dataCSV }</pre>
         </Tab>
-        <Tab eventKey={2} title="JSON">
+        <Tab eventKey={ 2 } title="JSON">
           <pre>{ dataJSON }</pre>
         </Tab>
-        <Tab eventKey={3} title="Processed Data">
+        <Tab eventKey={ 3 } title="Processed Data">
           <pre>{ processedJSON }</pre>
         </Tab>
       </Tabs>
