@@ -9,9 +9,7 @@ export default class CommuterCell extends Component {
   }
 
   enableEditing(e) {
-    this.setState({
-      isSelected: !this.state.isSelected
-    });
+    this.setState({ isSelected: !this.state.isSelected });
   }
 
   handleEdit(e) {
@@ -19,18 +17,18 @@ export default class CommuterCell extends Component {
 
   render() {
     const { isSelected } = this.state;
-    const { index, cell, isHeader } = this.props;
+    const { cell, isHeader } = this.props;
 
     if (isHeader) {
-      return <th key={ index }>{ cell }</th>;
+      return <th>{ cell }</th>;
     } else if (isSelected) {
       return (
-        <td key={ index } onClick={ this.enableEditing }>
+        <td onClick={ this.enableEditing }>
           <input type="text" value={ cell } onChange={ this.handleEdit } />
         </td>
       );
     } else {
-      return <td key={ index } onClick={ this.enableEditing }>{ cell }</td>;
+      return <td onClick={ this.enableEditing }>{ cell }</td>;
     }
   }
 }
