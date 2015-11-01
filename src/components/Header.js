@@ -18,6 +18,7 @@ export default class Header extends Component {
         <Col xs={12}>
           <nav styleName="links">
             <ul>
+              <li><Link to="/data">Data</Link></li>
               <li><Link to="/statistics">Statistics</Link></li>
               <li><a href="#">&lt;-</a></li>
               <li><a href="#">-&gt;</a></li>

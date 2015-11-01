@@ -38,8 +38,8 @@ export default class CommuterRow extends Component {
             isHeader={ isHeader }
           />
         )) }
-        { !isHeader && isHovering &&
-          <td className={ isHovering ? 'hover' : '' }>X</td>
+        { !isHeader &&
+          <td styleName="row-delete">{ isHovering ? 'X' : ''}</td>
         }
       </tr>
     );

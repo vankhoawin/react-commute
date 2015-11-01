@@ -1,11 +1,15 @@
 .commuter-row th,
 .commuter-row td {
-  overflow: hidden;
-  width: 80px;
+  text-align: center;
 }
 
 .commuter-row td:hover {
   cursor: pointer;
   border: 1px solid #cdc;
   background-color: #efe;
+}
+
+.commuter-row .row-delete {
+  border-top: 0;
+  color: red;
 }

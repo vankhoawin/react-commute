@@ -140,7 +140,7 @@ export default class CommuteDataInput extends Component {
 
     dispatch(importData(stats));
 
-    window.location.assign('/#/statistics');
+    window.location.assign('/#/data');
   }
 
   render() {

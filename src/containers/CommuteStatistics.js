@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 
-import {
-  LanePieChart,
-  CommuteLineChart,
-  CommuterTable
-} from '../components';
+import { LanePieChart, CommuteLineChart } from '../components';
 
 
 @connect(state => ({ commuteData: state.commuteData }))
@@ -17,9 +13,6 @@ export default class CommuteStatistics extends Component {
 
   render() {
     const {
-      rows,
-      headers,
-      rowTimes,
       lanes,
       rowTimesLineData,
       colTimes
@@ -27,10 +20,7 @@ export default class CommuteStatistics extends Component {
 
     return (
       <Row>
-        <Col md={6}>
-          <CommuterTable commuteData={ { rows, headers, rowTimes } } />
-        </Col>
-        <Col md={6}>
+        <Col xs={ 6 }>
           <LanePieChart lanes={ lanes } />
           <CommuteLineChart 
             rowTimes={ rowTimesLineData }
@@ -38,6 +28,8 @@ export default class CommuteStatistics extends Component {
             xAxisLabel="Day"
             yAxisLabel="Total Time (hours)"
           />
+        </Col>
+        <Col xs={ 6 }>
           <CommuteLineChart 
             rowTimes={ colTimes[0] }
             title="5 Commute Time"
