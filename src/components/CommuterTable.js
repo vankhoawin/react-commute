@@ -19,7 +19,7 @@ export default class CommuterTable extends Component {
     const combinedHeaders = [...headers, 'Total'];
 
     return (
-      <table className="table">
+      <table className="table" styleName="commuter-table">
         <thead>
           <CommuterRow isHeader={ true } row={ combinedHeaders } />
         </thead>

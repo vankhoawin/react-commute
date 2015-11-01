@@ -1,0 +1,11 @@
+.commuter-row th,
+.commuter-row td {
+  overflow: hidden;
+  width: 80px;
+}
+
+.commuter-row td:hover {
+  cursor: pointer;
+  border: 1px solid #cdc;
+  background-color: #efe;
+}

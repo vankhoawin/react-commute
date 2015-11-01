@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import CSSModules from 'react-css-modules';
 
+import styles from '../styles/CommuterRow.scss';
 import { CommuterCell } from '../components';
 
 
+@CSSModules(styles)
 export default class CommuterRow extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +28,7 @@ export default class CommuterRow extends Component {
 
     return (
       <tr
+        styleName="commuter-row"
         onMouseEnter={ this.handleMouseEnter }
         onMouseLeave={ this.handleMouseLeave }>
         { row.map((cell, index) => (
