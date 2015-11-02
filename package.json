@@ -1,6 +1,6 @@
 {
   "name": "react-commute",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Display CSV commute/time data with react-d3",
   "scripts": {
     "start": "node server.js",
