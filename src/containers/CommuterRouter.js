@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
+import { createHistory } from 'history';
 import { Row, Col } from 'react-bootstrap';
 
 import CommuteImport from './CommuteImport';
@@ -13,7 +14,7 @@ import { Header } from '../components';
 export default class CommuterRouter extends Component {
   render() {
     return (
-      <Router>
+      <Router history={ createHistory() }>
         <Route component={ Header }>
           <Route path="/" component={ CommuteImport } />
           <Route path="/statistics" component={ CommuteStatistics } />
