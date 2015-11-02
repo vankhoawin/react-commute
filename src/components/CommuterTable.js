@@ -26,7 +26,12 @@ export default class CommuterTable extends Component {
 
         <tbody styleName="commuter-body">
           { combinedRows.map((row, index) => (
-            <CommuterRow isHeader={ false } key={ index } row={ row } />
+            <CommuterRow
+              isHeader={ false }
+              key={ index }
+              index={ index }
+              row={ row }
+            />
           )) }
         </tbody>
       </table>

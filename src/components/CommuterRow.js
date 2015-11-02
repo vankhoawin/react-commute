@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 
 import styles from '../styles/CommuterRow.scss';
 import { CommuterCell } from '../components';
+import calculateStatistics from '../utils/calculateStatistics';
+import { deleteRow } from '../actions';
 
 
+@connect(state => ({ commuteData: state.commuteData }))
 @CSSModules(styles)
 export default class CommuterRow extends Component {
   constructor(props) {
@@ -12,6 +16,7 @@ export default class CommuterRow extends Component {
     this.state = { isHovering: false }
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   handleMouseEnter() {
@@ -22,6 +27,15 @@ export default class CommuterRow extends Component {
     this.setState({ isHovering: false });
   }
 
+  handleDeleteClick(e) {
+    const { index, dispatch } = this.props;
+    const { headers, rows } = this.props.commuteData;
+
+    let sliced = [...rows.slice(0, index), ...rows.slice(index + 1)];
+    let newStats = calculateStatistics(headers, sliced);
+    dispatch(deleteRow(newStats));
+  }
+
   render() {
     const { row, isHeader } = this.props;
     const { isHovering } = this.state;
@@ -30,7 +44,8 @@ export default class CommuterRow extends Component {
       <tr
         styleName="commuter-row"
         onMouseEnter={ this.handleMouseEnter }
-        onMouseLeave={ this.handleMouseLeave }>
+        onMouseLeave={ this.handleMouseLeave }
+      >
         { row.map((cell, index) => (
           <CommuterCell
             key={ index }
@@ -38,9 +53,16 @@ export default class CommuterRow extends Component {
             isHeader={ isHeader }
           />
         )) }
+
         { !isHeader &&
-          <td styleName="row-delete">{ isHovering ? 'X' : ''}</td>
+          <td
+            styleName="row-delete"
+            onClick={ this.handleDeleteClick }
+          >
+            { isHovering ? 'X' : ''}
+          </td>
         }
+
       </tr>
     );
   }

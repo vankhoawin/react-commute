@@ -6,6 +6,9 @@ export default function commuteData(state = initialState, action) {
   case 'IMPORT_DATA':
     return action.commuteData;
 
+  case 'DELETE_ROW':
+    return action.commuteData;
+
   default:
     return state;
 
